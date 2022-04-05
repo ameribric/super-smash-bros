@@ -1,25 +1,31 @@
 import './App.css';
-import Fighter from './Components/Fighter';
-// This above is from the Fighter.js file
-import FighterScreen from './Component/FighterScreen';
+import Fighter from './components/Fighter';
+import FighterScreen from './components/FighterScreen';
 import { useState } from 'react';
+
+const characters = [
+  {name: 'Roy', color: 'red'},
+  {name: 'Fox', color: 'green'},
+  {name: 'Ganondorf', color: 'purple'},
+  {name: 'Shiek', color: 'lightblue'}
+]
 
 function App() {
   const [visible, setVisible] = useState(false)
+  const [selectedCharacter, setSelectedCharacter] = useState(characters[0])
   return (
     <div className="App">
-      <h1> Fighters </h1>
-      <div className="fighters-grid">
-    <Fighter name={'Roy'} color={'red'}  setVisible = {setVisible} />
-    <Fighter name={'Fox'} color={'green'} />
-    <Fighter name={'Ganondorf'} color={'purple'} setVisible = {setVisible} />
-    <Fighter name={'Sheik'} color={'lightskyblue'} setVisible = {setVisible} />
-      </div>
-      <div>
-      </div>
-      <FighterScreen isVisible={visible} />
+     <h1>Fighters</h1>
+     <div className="fighters-grid">
+       {characters.map((element, i) => {
+         return(<Fighter name={element.name} color={element.color} setVisible ={setVisible} setSelectedCharacter={setSelectedCharacter}/>)
+       })}
+     </div>
+      <FighterScreen isVisible={visible} setVisible={setVisible}  selectedCharacter={selectedCharacter}/>
     </div>
   );
 }
+
+// const Fighter = {name: 'Roy', color: 'red'}
 
 export default App;
