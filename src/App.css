@@ -23,6 +23,7 @@
   transition: transform(0.3s);
   background-size: cover;
   border: 5px solid transparent;
+  background-repeat: no-repeat;
 }
 
 .fighter:hover {
